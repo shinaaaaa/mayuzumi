@@ -4821,9 +4821,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mayuzu@workspace:.":
+"mayuzumi@workspace:.":
   version: 0.0.0-use.local
-  resolution: "mayuzu@workspace:."
+  resolution: "mayuzumi@workspace:."
   dependencies:
     "@trivago/prettier-plugin-sort-imports": ^4.0.0
     "@trodi/electron-splashscreen": ^1.0.2

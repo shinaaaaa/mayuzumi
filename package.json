@@ -1,9 +1,9 @@
 {
-  "name": "mayuzu",
+  "name": "mayuzumi",
   "description": "アイドルマスターシャイニーカラーズの非公式専用ブラウザ",
   "author": {
-    "name": "arrow2nd",
-    "email": "dev@arrow2nd.com"
+    "name": "TodoShina",
+    "email": "shinaaaaa@protonmail.com"
   },
   "license": "MIT",
   "version": "2.1.12",
@@ -23,8 +23,8 @@
     "fmt": "prettier --write ."
   },
   "build": {
-    "appId": "com.arrow2nd.mayuzu",
-    "productName": "mayuzu",
+    "appId": "net.shina-colors.mayuzumi",
+    "productName": "mayuzumi",
     "artifactName": "${name}-${version}.${ext}",
     "files": [
       "./build/**/*"
