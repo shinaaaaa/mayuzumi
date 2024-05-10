@@ -114,6 +114,15 @@ ipcMain.on("toggle-maximize", () => browser.maximize());
 // ウィンドウのピン留めを変更
 ipcMain.on("toggle-pinned", () => browser.pinned());
 
+// ウィンドウを縮小
+ipcMain.on("zoom-out",()=>browser.zoomOut());
+
+// ウィンドウを拡大
+ipcMain.on("zoom-in",()=>browser.zoomIn());
+
+// コミュ並列観覧モードを変更
+ipcMain.on("cycle-sub-screen-mode",()=>browser.cycleSubScreenMode());
+
 // ミュート状態の変更
 ipcMain.on("toggle-mute", () => browser.muted());
 

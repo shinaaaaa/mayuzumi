@@ -13,6 +13,9 @@ contextBridge.exposeInMainWorld("api", {
   toggleMaximize: () => ipcRenderer.send("toggle-maximize"),
   togglePinned: () => ipcRenderer.send("toggle-pinned"),
   toggleMute: () => ipcRenderer.send("toggle-mute"),
+  zoomOut: () => ipcRenderer.send("zoom-out"),
+  zoomIn: () => ipcRenderer.send("zoom-in"),
+  cycleSubScreenMode:()=> ipcRenderer.send('cycle-sub-screen-mode'),
 
   // スクリーンショット関係
   capture: () => ipcRenderer.send("capture"),

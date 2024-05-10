@@ -41,6 +41,21 @@ export type API = {
   toggleMaximize: () => void;
 
   /**
+   * ウィンドウを縮小
+   */
+  zoomOut: () => void;
+
+  /**
+   * ウィンドウを拡大
+   */
+  zoomIn: () => void;
+
+  /**
+   * コミュ並列観覧モードの切替
+   */
+  cycleSubScreenMode: () => void;
+
+  /**
    * ウィンドウのピン止め切り替え
    */
   togglePinned: () => void;

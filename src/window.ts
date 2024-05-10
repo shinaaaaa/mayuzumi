@@ -1,8 +1,8 @@
 import * as Splashscreen from "@trodi/electron-splashscreen";
-import { BrowserView, BrowserWindow, Menu, app, dialog, shell } from "electron";
+import {BrowserView, BrowserWindow, Menu, app, dialog, shell} from "electron";
 import path from "path";
 
-import { isAllowedUrl, isUrl } from "./libs/url";
+import {isAllowedUrl, isUrl} from "./libs/url";
 
 /**
  * ブラウザウィンドウ
@@ -11,14 +11,25 @@ export class Browser {
   private window!: BrowserWindow;
   private view!: BrowserView;
 
-  /** ゲームの標準解像度 */
+  /**
+   * 拡大率(標準は16倍)
+   * */
+  private zoomLevel = 16;
+
+  /** 最小解像度 */
   private gameWindowSize = {
-    width: 1136,
-    height: 640
+    width: 71 * this.zoomLevel,
+    height: 40 * this.zoomLevel
   };
 
   /** タイトルバーの高さ */
   private titlebarHeight = 24;
+
+  /**
+   * コミュ並列観覧モードの補正
+   * 無効=0, 水平=1, 垂直=2
+   */
+  private subScreenMode = 0;
 
   /**
    * メインウィンドウ設定を取得
@@ -33,8 +44,8 @@ export class Browser {
     return {
       title: "mayuzu",
       ...windowSize,
-      minWidth: windowSize.width,
-      minHeight: windowSize.height,
+      minWidth: windowSize.width / this.zoomLevel,
+      minHeight: windowSize.height / this.zoomLevel,
       center: true,
       frame: false,
       show: false,
@@ -52,7 +63,7 @@ export class Browser {
    */
   private resizeView = (bounds?: Electron.Rectangle) => {
     // 指定なしの場合、現在のサイズを取得
-    const { width, height } = bounds || this.window.getBounds();
+    const {width, height} = bounds || this.window.getBounds();
 
     // タイトルバーの高さを考慮
     this.view.setBounds({
@@ -62,6 +73,30 @@ export class Browser {
       height: height - this.titlebarHeight
     });
   };
+
+  /**
+   * ウィンドウをリサイズ
+   */
+  private resizeWindow = () => {
+    // 拡大率の制限
+    if (this.zoomLevel <= 0) {
+      this.zoomLevel = 7;
+      return;
+    }
+
+    // 解像度の変数を更新
+    this.gameWindowSize = {
+      width: 71 * this.zoomLevel * (this.subScreenMode == 1 ? 2 : 1), // 水平モード(1)だったら水平に広げる
+      height: 40 * this.zoomLevel * (this.subScreenMode == 2 ? 2 : 1) // 垂直モード(1)だったら垂直に広げる
+    };
+
+    this.window.setBounds({
+      width: this.gameWindowSize.width,
+      height: this.gameWindowSize.height + this.titlebarHeight
+    });
+
+    this.resizeView();
+  }
 
   /**
    * ウィンドウを作成
@@ -88,11 +123,11 @@ export class Browser {
     // NOTE: this.view.setAutoResize() を使わなかった理由があったはずだけど忘れた...
 
     // ウィンドウの設定
-    this.window.loadFile("./build/index.html");
+    this.window.loadFile("./build/index.html").then();
     this.setWindowEventHandlers();
 
     // 開発者ツール
-    this.window.webContents.openDevTools();
+    // this.window.webContents.openDevTools();
     this.view.webContents.openDevTools();
 
     // メニューバーを無効
@@ -154,11 +189,11 @@ export class Browser {
       e.preventDefault();
     });
 
-    this.view.webContents.setWindowOpenHandler(({ url }) => {
-      if (isAllowedUrl(url)) return { action: "allow" };
+    this.view.webContents.setWindowOpenHandler(({url}) => {
+      if (isAllowedUrl(url)) return {action: "allow"};
 
       openUrl(url);
-      return { action: "deny" };
+      return {action: "deny"};
     });
   };
 
@@ -236,6 +271,32 @@ export class Browser {
   };
 
   /**
+   * ウィンドウを縮小
+   */
+  public zoomOut = () => {
+    this.zoomLevel--;
+    this.resizeWindow();
+  }
+
+  /**
+   * ウィンドウを拡大
+   */
+  public zoomIn = () => {
+    this.zoomLevel++;
+    this.resizeWindow();
+  }
+
+  /**
+   * コミュ並列観覧モードの切替
+   */
+  public cycleSubScreenMode() {
+    this.subScreenMode += 1;
+    if (this.subScreenMode == 3) this.subScreenMode = 0;
+    console.log(this.subScreenMode)
+    this.resizeWindow();
+  }
+
+  /**
    * ミュート切り替え
    */
   public muted = () => {
@@ -247,7 +308,7 @@ export class Browser {
    * 再読み込み
    */
   public reloadView = () => {
-    this.view.webContents.loadURL("https://shinycolors.enza.fun");
+    this.view.webContents.loadURL("https://shinycolors.enza.fun").then();
   };
 
   /**
@@ -279,4 +340,5 @@ export class Browser {
   ): string[] | undefined => {
     return dialog.showOpenDialogSync(this.window, options);
   };
+
 }
