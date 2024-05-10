@@ -1,4 +1,3 @@
-<meta name="google-site-verification" content="ErfbqOGif34fLW20d0mUZ5b2Ajr7fGTv0F0oU2OSqFA" />
 <p>
     <a href="https://idollist.idolmaster-official.jp/detail/50013">
         <img src="https://img.shields.io/badge/SHINY%20COLORS-%E8%8A%B9%E6%B2%A2%E3%81%82%E3%81%95%E3%81%B2-F30100" alt="芹沢あさひ">
