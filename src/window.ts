@@ -105,7 +105,7 @@ export class Browser {
     // スプラッシュスクリーン
     this.window = Splashscreen.initSplashScreen({
       windowOpts: this.getWindowOption(),
-      templateUrl: `${__dirname}/images/splash.png`,
+      templateUrl: `${__dirname}/images/splash.svg`,
       splashScreenOpts: {
         width: 520,
         height: 264,

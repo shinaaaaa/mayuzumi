@@ -14,7 +14,9 @@ const Footer = (): JSX.Element => {
   return (
     <>
       <span className="block mt-8 text-center text-xs text-luca">
-        {`Developed by arrow2nd - v${process.env.VERSION}`}
+        {`Developed by TodoShina - v${process.env.VERSION}`}
+        <br/>
+        Original project developed by arrow2nd
       </span>
       <div className="mt-4 text-center text-xs text-luca">
         <span className={linkClassName} onClick={handleClickPrivacyPolicy}>
