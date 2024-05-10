@@ -24,9 +24,12 @@ serizawaのフォーク版のmayuzumiです
 * Discordとの連携機能
 
 TypeScriptもElectronも全然触ったことがないので...かなりゆっくりでアレなコードになる気がしますが...頑張ります...
+
+<a href="https://github.com/arrow2nd/serizawa">arrow2nd/serizawa(フォーク元)</a>
+
 <details>
 
-<summary>serizawa(フォーク元)のREADME</summary>
+<summary>arrow2nd/serizawa(フォーク元)のREADME</summary>
 
 <p>
   <img src="https://user-images.githubusercontent.com/44780846/158746414-19a6833f-84e8-4f1e-8b58-885f6ffeaea3.png" alt="serizawa">
