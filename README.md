@@ -10,6 +10,8 @@
     </a>
 </p>
 
+## [mayuzumi](https://github.com/shinaaaaa/mayuzumi)
+
 ## シャニマス専ブラ
 serizawaのフォーク版のmayuzumiです
 
