@@ -105,7 +105,7 @@ export class Browser {
     // スプラッシュスクリーン
     this.window = Splashscreen.initSplashScreen({
       windowOpts: this.getWindowOption(),
-      templateUrl: `${__dirname}/images/splash.svg`,
+      templateUrl: `${__dirname}/images/splash.png`,
       splashScreenOpts: {
         width: 520,
         height: 264,
@@ -128,7 +128,7 @@ export class Browser {
 
     // 開発者ツール
     // this.window.webContents.openDevTools();
-    this.view.webContents.openDevTools();
+    // this.view.webContents.openDevTools();
 
     // メニューバーを無効
     Menu.setApplicationMenu(null);

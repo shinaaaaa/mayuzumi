@@ -1,12 +1,12 @@
 {
-  "name": "mayuzu",
+  "name": "mayuzumi",
   "description": "アイドルマスターシャイニーカラーズの非公式専用ブラウザ",
   "author": {
-    "name": "arrow2nd",
-    "email": "dev@arrow2nd.com"
+    "name": "TodoShina",
+    "email": "shinaaaaa@protonmail.com"
   },
   "license": "MIT",
-  "version": "2.1.12",
+  "version": "3.0.0",
   "main": "./build/main.js",
   "private": true,
   "scripts": {
@@ -23,8 +23,8 @@
     "fmt": "prettier --write ."
   },
   "build": {
-    "appId": "com.arrow2nd.mayuzu",
-    "productName": "mayuzu",
+    "appId": "net.shina-colors.mayuzumi",
+    "productName": "mayuzumi",
     "artifactName": "${name}-${version}.${ext}",
     "files": [
       "./build/**/*"
@@ -66,7 +66,7 @@
     "cross-env": "^7.0.3",
     "css-loader": "^6.7.3",
     "electron": "29.1.1",
-    "electron-builder": "^23.6.0",
+    "electron-builder": "^24.13.3",
     "eslint": "^8.33.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-react": "^7.32.2",
