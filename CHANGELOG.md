@@ -1,5 +1,18 @@
 # Change Log
 
+## [3.0.0] - 2024-05-10
+
+### Added
+
+- ウィンドウの拡大、縮小ボタンの追加
+
+- コミュ並列閲覧モード用のウィンドウサイズ変更ボタンを追加
+
+<details>
+
+<summary>arrow2nd/serizawa(フォーク元)のCHANGELOG.md</summary>
+
+
 ## [Unreleased]
 
 ## [2.1.12] - 2023-02-07
@@ -230,3 +243,4 @@
 [1.0.4]: https://github.com/arrow2nd/serizawa/compare/v1.0.3...v1.0.4
 [1.0.3]: https://github.com/arrow2nd/serizawa/compare/v1.0.2...v1.0.3
 [1.0.2]: https://github.com/arrow2nd/serizawa/compare/v1.0.0...v1.0.2
+<details>
