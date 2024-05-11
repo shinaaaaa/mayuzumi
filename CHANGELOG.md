@@ -217,7 +217,7 @@
 
 - リリース 🎉
 
-[3.0.0]: https://github.com/shinaaaaa/mayuzumi/releases/tag/3.0.0
+[3.0.0]: https://github.com/shinaaaaa/mayuzumi/releases/tag/v3.0.0
 [unreleased]: https://github.com/arrow2nd/serizawa/compare/v2.1.12...HEAD
 [2.1.12]: https://github.com/arrow2nd/serizawa/compare/v2.1.11...v2.1.12
 [2.1.11]: https://github.com/arrow2nd/serizawa/compare/v2.1.10...v2.1.11
