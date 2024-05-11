@@ -74,8 +74,8 @@ jobs:
             ## ファイルについて
             |OS|ファイル名|
             |-|-|
-            |Windows|serizawa-${{ env.VERSION }}.exe|
-            |macOS|serizawa-${{ env.VERSION }}.dmg|
-            |Liunx|serizawa-${{ env.VERSION }}.AppImage|
+            |Windows|mayuzumi-${{ env.VERSION }}.exe|
+            |macOS|mayuzumi-${{ env.VERSION }}.dmg|
+            |Liunx|mayuzumi-${{ env.VERSION }}.AppImage|
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

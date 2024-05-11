@@ -25,7 +25,7 @@ const browser = new Browser();
  * @returns ディレクトリパス
  */
 const getPicDir = (): string => {
-  const defaultPath = path.join(app.getPath("pictures"), "serizawa");
+  const defaultPath = path.join(app.getPath("pictures"), "mayuzumi");
   return String(store.get("picDir", defaultPath));
 };
 
@@ -46,7 +46,7 @@ const showUpdateDialog = (url: string | undefined) => {
   });
 
   if (result === 0) {
-    shell.openExternal(url);
+    shell.openExternal(url).then();
     app.quit(); // 終了
   }
 };
@@ -207,7 +207,7 @@ ipcMain.handle("remove-cookie", async (): Promise<void> => {
     url += cookie.domain?.charAt(0) === "." ? "www" : "";
     url += `${cookie.domain || ""}${cookie.path || ""}`;
 
-    session.defaultSession.cookies.remove(url, cookie.name);
+    await session.defaultSession.cookies.remove(url, cookie.name);
   }
 
   // 設定を削除
@@ -249,10 +249,10 @@ ipcMain.handle("check-update", async (): Promise<void> => {
 
 // プライバシーポリシーを開く
 ipcMain.on("open-privacy-policy", () => {
-  shell.openExternal("https://arrow2nd.github.io/serizawa/");
+  shell.openExternal("https://github.com/shinaaaaa/mayuzumi/blob/main/docs/index.md").then();
 });
 
 // GitHubを開く
 ipcMain.on("open-github", () => {
-  shell.openExternal("https://github.com/arrow2nd/serizawa/");
+  shell.openExternal("https://github.com/shinaaaaa/mayuzumi").then();
 });

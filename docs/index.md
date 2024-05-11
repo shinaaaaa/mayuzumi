@@ -1,10 +1,10 @@
 # プライバシーポリシー
 
-> 最終更新日: 2023/01/21
+> 最終更新日: 2024/05/11
 
-## serizawa について
+## mayuzumi について
 
-serizawa（以下、本ソフト）は arrow2nd（以下、当運営者） が開発・運営しております。
+mayuzumi（以下、本ソフト）は TodoShina（以下、当運営者） が開発・運営しております。
 
 ## データの収集
 
@@ -35,6 +35,6 @@ serizawa（以下、本ソフト）は arrow2nd（以下、当運営者） が�
 
 ご不明な点がありましたら、お気軽にお問合せください。
 
-- Email: contact at arrow2nd.com
+- Email: shinaaaaa at protonmail.com
 
 > ※ at を @ に置き換えてください
