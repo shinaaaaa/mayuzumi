@@ -31,12 +31,6 @@ jobs:
           yarn build
           yarn pack:win
 
-      - name: Package for Linux
-        if: matrix.os == 'ubuntu-latest'
-        run: |
-          yarn build
-          yarn pack:linux
-
       - name: Package for MacOS
         if: matrix.os == 'macos-latest'
         run: |
@@ -76,6 +70,5 @@ jobs:
             |-|-|
             |Windows|mayuzumi-${{ env.VERSION }}.exe|
             |macOS|mayuzumi-${{ env.VERSION }}.dmg|
-            |Liunx|mayuzumi-${{ env.VERSION }}.AppImage|
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
