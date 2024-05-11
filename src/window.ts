@@ -42,7 +42,7 @@ export class Browser {
     };
 
     return {
-      title: "mayuzu",
+      title: "mayuzumi",
       ...windowSize,
       minWidth: windowSize.width / this.zoomLevel,
       minHeight: windowSize.height / this.zoomLevel,
