@@ -28,7 +28,8 @@ export async function checkUpdate(): Promise<string | undefined> {
   const osType = os.type().toString();
   const extList: { [index: string]: string } = {
     Darwin: "dmg",
-    Windows_NT: "exe"
+    Windows_NT: "exe",
+    Linux: "AppImage"
   };
 
   const assets = res.data.assets.find((e: { name: string }) =>

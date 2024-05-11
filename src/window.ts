@@ -32,6 +32,18 @@ export class Browser {
   private subScreenMode = 0;
 
   /**
+   * 解像度の変数を更新
+   */
+  private updateGameWindowSize = (lastZoomLevel?: number) => {
+    if (typeof lastZoomLevel === "number" && !Number.isNaN(lastZoomLevel)) this.zoomLevel = lastZoomLevel;
+    // 解像度の変数を更新
+    this.gameWindowSize = {
+      width: 71 * this.zoomLevel * (this.subScreenMode == 1 ? 2 : 1), // 水平モード(1)だったら水平に広げる
+      height: 40 * this.zoomLevel * (this.subScreenMode == 2 ? 2 : 1) // 垂直モード(1)だったら垂直に広げる
+    };
+  }
+
+  /**
    * メインウィンドウ設定を取得
    * @returns 設定
    */
@@ -84,11 +96,7 @@ export class Browser {
       return;
     }
 
-    // 解像度の変数を更新
-    this.gameWindowSize = {
-      width: 71 * this.zoomLevel * (this.subScreenMode == 1 ? 2 : 1), // 水平モード(1)だったら水平に広げる
-      height: 40 * this.zoomLevel * (this.subScreenMode == 2 ? 2 : 1) // 垂直モード(1)だったら垂直に広げる
-    };
+    this.updateGameWindowSize();
 
     this.window.setBounds({
       width: this.gameWindowSize.width,
@@ -101,7 +109,8 @@ export class Browser {
   /**
    * ウィンドウを作成
    */
-  public create = () => {
+  public create = (lastZoomLevel?: number) => {
+    this.updateGameWindowSize(lastZoomLevel);
     // スプラッシュスクリーン
     this.window = Splashscreen.initSplashScreen({
       windowOpts: this.getWindowOption(),
@@ -166,7 +175,7 @@ export class Browser {
     const openUrl = (url: string) => {
       // 正しいURLなら標準ブラウザで表示
       if (isUrl(url)) {
-        shell.openExternal(url);
+        shell.openExternal(url).then();
         return;
       }
 
@@ -276,6 +285,7 @@ export class Browser {
   public zoomOut = () => {
     this.zoomLevel--;
     this.resizeWindow();
+    return this.zoomLevel;
   }
 
   /**
@@ -284,6 +294,7 @@ export class Browser {
   public zoomIn = () => {
     this.zoomLevel++;
     this.resizeWindow();
+    return this.zoomLevel;
   }
 
   /**

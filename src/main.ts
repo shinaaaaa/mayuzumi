@@ -7,13 +7,13 @@ import {
   shell
 } from "electron";
 import Store from "electron-store";
-import { existsSync, mkdirSync, writeFileSync } from "fs";
+import {existsSync, mkdirSync, writeFileSync} from "fs";
 import path from "path";
 
-import { checkUpdate } from "./libs/checkUpdate";
-import { date2String } from "./libs/util";
+import {checkUpdate} from "./libs/checkUpdate";
+import {date2String} from "./libs/util";
 
-import { Browser } from "./window";
+import {Browser} from "./window";
 
 const store = new Store();
 const browser = new Browser();
@@ -54,8 +54,10 @@ const showUpdateDialog = (url: string | undefined) => {
 //----------------------------------------------------------------------
 
 app.whenReady().then(() => {
+  let lastZoomLeve = Number(store.get('zoomLevel'));
+  console.log(lastZoomLeve)
   // ウィンドウを作成
-  browser.create();
+  browser.create(lastZoomLeve);
 
   // 更新を確認
   checkUpdate()
@@ -81,7 +83,7 @@ app.on("browser-window-blur", () => {
   if (!browser.isPinned()) return;
 
   // フォーカスを奪う
-  app.focus({ steal: true });
+  app.focus({steal: true});
 
   // 実際にフォーカスが当たるまで遅延があるので
   // 少し間隔をあけてからビューにフォーカスを当てる
@@ -115,13 +117,19 @@ ipcMain.on("toggle-maximize", () => browser.maximize());
 ipcMain.on("toggle-pinned", () => browser.pinned());
 
 // ウィンドウを縮小
-ipcMain.on("zoom-out",()=>browser.zoomOut());
+ipcMain.on("zoom-out", () => {
+  let zoomLevel = browser.zoomOut();
+  store.set('zoomLevel', zoomLevel);
+});
 
 // ウィンドウを拡大
-ipcMain.on("zoom-in",()=>browser.zoomIn());
+ipcMain.on("zoom-in", () => {
+  let zoomLevel = browser.zoomIn();
+  store.set('zoomLevel', zoomLevel);
+});
 
 // コミュ並列観覧モードを変更
-ipcMain.on("cycle-sub-screen-mode",()=>browser.cycleSubScreenMode());
+ipcMain.on("cycle-sub-screen-mode", () => browser.cycleSubScreenMode());
 
 // ミュート状態の変更
 ipcMain.on("toggle-mute", () => browser.muted());
