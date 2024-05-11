@@ -1,5 +1,24 @@
 # Change Log
 
+## [3.0.2] - 2024-05-11
+
+### Added
+
+- 再起動後もウィンドウサイズが維持されるようにした(手動でリサイズした場合を除く)
+
+## [3.0.1] - 2024-05-11
+
+### Security
+
+- 依存関係の更新
+
+### Edit
+- プライバシーポリシーなどの変更
+
+### Fix
+- ウィンドウ名の修正
+- スクリーンショット保存先の修正
+
 ## [3.0.0] - 2024-05-10
 
 ### Added
@@ -217,6 +236,8 @@
 
 - リリース 🎉
 
+[3.0.2]: https://github.com/shinaaaaa/mayuzumi/compare/v3.0.1...v3.0.2
+[3.0.1]: https://github.com/shinaaaaa/mayuzumi/compare/v3.0.0...v3.0.1
 [3.0.0]: https://github.com/shinaaaaa/mayuzumi/releases/tag/v3.0.0
 [unreleased]: https://github.com/arrow2nd/serizawa/compare/v2.1.12...HEAD
 [2.1.12]: https://github.com/arrow2nd/serizawa/compare/v2.1.11...v2.1.12
