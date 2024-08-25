@@ -1,5 +1,5 @@
 import * as Splashscreen from "@trodi/electron-splashscreen";
-import {BrowserView, BrowserWindow, Menu, app, dialog, shell} from "electron";
+import {WebContentsView, BrowserWindow, Menu, app, dialog, shell} from "electron";
 import path from "path";
 
 import {isAllowedUrl, isUrl} from "./libs/url";
@@ -9,14 +9,14 @@ import {isAllowedUrl, isUrl} from "./libs/url";
  */
 export class Browser {
   private window!: BrowserWindow;
-  private view!: BrowserView;
+  private view!: WebContentsView;
 
   /**
    * 拡大率(標準は16倍)
    * */
   private zoomLevel = 16;
 
-  /** 最小解像度 */
+  /** 解像度 */
   private gameWindowSize = {
     width: 71 * this.zoomLevel,
     height: 40 * this.zoomLevel
@@ -77,11 +77,11 @@ export class Browser {
     // 指定なしの場合、現在のサイズを取得
     const {width, height} = bounds || this.window.getBounds();
 
-    // タイトルバーの高さを考慮
+    // タイトルバーのサイズを考慮
     this.view.setBounds({
       x: 0,
       y: this.titlebarHeight,
-      width,
+      width: width,
       height: height - this.titlebarHeight
     });
   };
@@ -124,7 +124,7 @@ export class Browser {
     });
 
     // ビューの設定
-    this.view = new BrowserView();
+    this.view = new WebContentsView();
     this.showView();
     this.reloadView();
     this.setViewEventHandlers();
@@ -135,9 +135,12 @@ export class Browser {
     this.window.loadFile("./build/index.html").then();
     this.setWindowEventHandlers();
 
-    // 開発者ツール
-    // this.window.webContents.openDevTools();
-    // this.view.webContents.openDevTools();
+
+    // 開発者ツール(start:dev で実行した場合のみ有効)
+    if (process.env.NODE_ENV === 'development') {
+      this.window.webContents.openDevTools({mode: "detach"});
+      this.view.webContents.openDevTools({mode: "detach"});
+    }
 
     // メニューバーを無効
     Menu.setApplicationMenu(null);
@@ -226,7 +229,7 @@ export class Browser {
    * ビューを表示
    */
   public showView = () => {
-    this.window.setBrowserView(this.view);
+    this.window.contentView.addChildView(this.view);
     this.resizeView();
   };
 
@@ -234,7 +237,7 @@ export class Browser {
    * ビューを非表示
    */
   public hideView = () => {
-    this.window.removeBrowserView(this.view);
+    this.window.contentView.removeChildView(this.view);
   };
 
   /**

@@ -55,7 +55,6 @@ const showUpdateDialog = (url: string | undefined) => {
 
 app.whenReady().then(() => {
   let lastZoomLeve = Number(store.get('zoomLevel'));
-  console.log(lastZoomLeve)
   // ウィンドウを作成
   browser.create(lastZoomLeve);
 
